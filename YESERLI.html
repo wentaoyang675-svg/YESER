@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YESERLI | Master the Warmth</title>
+    <!-- 引入谷歌字体：Playfair Display (标题) 和 Montserrat (正文) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 核心样式设置 --- */
+        :root {
+            --bg-color: #121212;
+            --secondary-bg: #1e1e1e;
+            --text-color: #f0f0f0;
+            --accent-color: #D4AF37; /* 香槟金 */
+            --accent-hover: #b8962e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(18, 18, 18, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+
+        .cart-icon {
+            font-size: 14px;
+            border: 1px solid var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* --- Hero 首屏 --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1515286561278-6534599a89d6?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* --- 产品板块通用样式 --- */
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 100px 5%;
+            min-height: 80vh;
+        }
+
+        .product-section:nth-child(even) {
+            flex-direction: row-reverse;
+            background-color: var(--secondary-bg);
+        }
+
+        .product-text {
+            flex: 1;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        .product-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .product-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .product-text p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+            max-width: 500px;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 模拟产品图片的卡片效果 */
+        .img-card {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            background-color: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .img-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: #000;
+            padding: 5px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #000;
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-logo {
+            font-size: 30px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .product-section { padding: 60px 5%; text-align: center; }
+            .product-text { padding: 20px 0; }
+            .product-section:nth-child(even) { flex-direction: row; }
+            .product-text p { margin: 0 auto 30px auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">YESERLI</div>
+        <div class="nav-links">
+            <a href="#">Shop</a>
+            <a href="#">Our Story</a>
+            <a href="#">Support</a>
+        </div>
+        <a href="#" class="cart-icon">CART (0)</a>
+    </nav>
+
+    <!-- 首屏 Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Master the Warmth.</h1>
+            <p>Premium heating technology meets minimalist design.</p>
+            <a href="#" class="btn">Shop The Collection</a>
+        </div>
+    </section>
+
+    <!-- 产品 1: 手冲壶 -->
+    <section class="product-section">
+        <div class="product-image">
+            <div class="img-card">
+                <!-- 这里为了演示使用了网络图，实际使用时请替换为您上传的手冲壶图片 -->
+                <img src="https://images.unsplash.com/photo-1544976739-16a22c544d9f?q=80&w=1000&auto=format&fit=crop" alt="YESERLI Kettle">
+                <div class="badge">Best Seller</div>
+            </div>
+        </div>
+        <div class="product-text">
+            <h3>The Barista Series</h3>
+            <h2>Precision Pour-Over</h2>
+            <p>Experience the perfect extraction with degree-specific temperature control. The balanced gooseneck spout ensures a steady pour, turning your morning coffee into a meditation. Matte black finish with gold accents.</p>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+
+    <!-- 产品 2: 壁挂取暖器 -->
+    <section class="product-section">
+        <div class="product-text">
+            <h3>Comfort Series - Model X</h3>
+            <h2>Halo Infrared Heater</h2>
+            <p>Extend your evenings on the patio. The Halo Heater delivers instant, sun-like warmth with zero noise. Designed for both indoor elegance and outdoor durability. Includes remote control and timer.</p>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product-image">
+            <div class="img-card">
+                <!-- 实际使用请替换为您的第一款取暖器图片 -->
+                <img src="https://images.unsplash.com/photo-1622375678438-6b81d6092e03?q=80&w=1000&auto=format&fit=crop" alt="Halo Heater">
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品 3: 智能取暖器 -->
+    <section class="product-section">
+        <div class="product-image">
+            <div class="img-card">
+                <!-- 实际使用请替换为您的第二款取暖器图片 -->
+                <img src="https://images.unsplash.com/photo-1585338117628-986dc57262ba?q=80&w=1000&auto=format&fit=crop" alt="Blade Heater">
+                <div class="badge">New Arrival</div>
+            </div>
+        </div>
+        <div class="product-text">
+            <h3>Comfort Series - Model S</h3>
+            <h2>Blade Smart Heater</h2>
+            <p>Engineered for the modern home. The Blade Heater blends seamlessly into your decor with its slim profile while providing powerful, radiant heat. Fully adjustable thermostat for your perfect comfort zone.</p>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+
+    <!-- 产品 4: 奶泡机 -->
+    <section class="product-section">
+        <div class="product-text">
+            <h3>The Froth Series</h3>
+            <h2>Velvet Milk Frother</h2>
+            <p>Create rich, velvety micro-foam in seconds. Whether it's a cold brew foam or a hot cappuccino, the YESERLI Frother is your secret to barista-quality drinks at home. 4-in-1 magnetic whisk technology.</p>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product-image">
+            <div class="img-card">
+                <!-- 实际使用请替换为您的奶泡机图片 -->
+                <img src="https://images.unsplash.com/photo-1542316496-e23a3d5483f1?q=80&w=1000&auto=format&fit=crop" alt="Milk Frother">
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 Footer -->
+    <footer>
+        <div class="footer-logo">YESERLI</div>
+        <div class="footer-links">
+            <a href="#">Shipping & Returns</a>
+            <a href="#">Warranty</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Instagram</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 YESERLI Inc. Designed for the Modern Home.
+        </div>
+    </footer>
+
+</body>
+</html>
